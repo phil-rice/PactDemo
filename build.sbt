@@ -1,9 +1,5 @@
 name := "Pact-Demo"
 
-resolvers ++= Seq(
-  Resolver.sonatypeRepo("releases"),
-  "Twitter Maven" at "https://maven.twttr.com"
-)
 
 val versions = new {
   val scala = "2.11.8"
@@ -20,6 +16,10 @@ lazy val commonSettings = Seq(
   publishMavenStyle := true,
   scalaVersion := versions.scala,
   scalacOptions ++= Seq("-feature"),
+  resolvers ++= Seq(
+    Resolver.sonatypeRepo("releases"),
+    "Twitter Maven" at "https://maven.twttr.com"
+  ),
   libraryDependencies += "org.mockito" % "mockito-all" % versions.mockito % "test",
   libraryDependencies += "org.scalatest" %% "scalatest" % versions.scalatest % "test"
 )
