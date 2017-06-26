@@ -24,6 +24,15 @@ lazy val commonSettings = Seq(
     Resolver.sonatypeRepo("releases"),
     "Twitter Maven" at "https://maven.twttr.com"
   ),
+  { for {
+    username <- Option(System.getenv().get("SONATYPE_USERNAME"))
+    password <- Option(System.getenv().get("SONATYPE_PASSWORD"))
+  } yield
+    credentials += Credentials(
+      "Sonatype Nexus Repository Manager",
+      "oss.sonatype.org",
+      username,
+      password)}.  getOrElse(credentials ++= Seq()),
   libraryDependencies += "org.mockito" % "mockito-all" % versions.mockito % "test",
   libraryDependencies += "org.scalatest" %% "scalatest" % versions.scalatest % "test",
 
