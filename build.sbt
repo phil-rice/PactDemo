@@ -2,6 +2,8 @@ name := "Pact-Demo"
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint")
 
+publishArtifact  := false
+
 val versions = new {
   val scala = "2.11.8"
   //  val scala = "2.12.1"
@@ -94,3 +96,5 @@ lazy val iosApp = (project in file("modules/iosApp")).dependsOn(utilities).aggre
 
 lazy val provider = (project in file("modules/provider")).dependsOn(utilities).aggregate(utilities).
   settings(finatraSettings: _*)
+
+
