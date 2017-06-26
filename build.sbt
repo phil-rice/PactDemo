@@ -21,8 +21,43 @@ lazy val commonSettings = Seq(
     "Twitter Maven" at "https://maven.twttr.com"
   ),
   libraryDependencies += "org.mockito" % "mockito-all" % versions.mockito % "test",
-  libraryDependencies += "org.scalatest" %% "scalatest" % versions.scalatest % "test"
+  libraryDependencies += "org.scalatest" %% "scalatest" % versions.scalatest % "test",
+
+  pomIncludeRepository := { _ => false },
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+
+  publishTo := {
+    val nexus = "https://oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  },
+  pomIncludeRepository := { _ => false },
+  pomExtra in ThisBuild := (
+    <url>https://github.com/phil-rice/PactDemo</url>
+      <licenses>
+        <license>
+          <name>BSD-style</name>
+          <url>http://www.opensource.org/licenses/bsd-license.php</url>
+          <distribution>repo</distribution>
+        </license>
+      </licenses>
+      <scm>
+        <url>https://github.com/phil-rice/PactDemo.git</url>
+        <connection>https://github.com/phil-rice/PactDemo.git</connection>
+      </scm>
+      <developers>
+        <developer>
+          <id>phil.rice</id>
+          <name>Phil Rice</name>
+          <url>www.validoc.org</url>
+        </developer>
+      </developers>),
+  publishArtifact in Test := false
 )
+
 
 lazy val finatraSettings = commonSettings ++ Seq(
   libraryDependencies += "com.twitter" %% "finatra-http" % versions.finatra,
