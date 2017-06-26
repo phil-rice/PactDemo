@@ -1,5 +1,10 @@
 name := "Pact-Demo"
 
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("releases"),
+  "Twitter Maven" at "https://maven.twttr.com"
+)
+
 val versions = new {
   val scala = "2.11.8"
   //  val scala = "2.12.1"
