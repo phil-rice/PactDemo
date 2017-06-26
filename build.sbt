@@ -1,5 +1,6 @@
 name := "Pact-Demo"
 
+javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint")
 
 val versions = new {
   val scala = "2.11.8"
