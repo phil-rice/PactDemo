@@ -16,6 +16,7 @@ lazy val commonSettings = Seq(
   publishMavenStyle := true,
   scalaVersion := versions.scala,
   scalacOptions ++= Seq("-feature"),
+  javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint"),
   resolvers ++= Seq(
     Resolver.sonatypeRepo("releases"),
     "Twitter Maven" at "https://maven.twttr.com"
