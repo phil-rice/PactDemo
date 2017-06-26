@@ -5,6 +5,7 @@ val versions = new {
   //  val scala = "2.12.1"
   val finatra = "2.2.0"
   val scalatest = "3.0.1"
+  val scalapact = "2.1.3"
   val mockito = "1.10.19"
   val guice = "4.0"
 }
@@ -37,14 +38,17 @@ lazy val finatraSettings = commonSettings ++ Seq(
   libraryDependencies += "com.twitter" %% "finatra-jackson" % versions.finatra % "test" classifier "tests"
 )
 
+lazy val pactConsumerSettings = finatraSettings ++ Seq(
+  libraryDependencies += "com.itv" %% "scalapact-scalatest" % versions.scalapact
+)
 lazy val utilities = (project in file("modules/utilities")).
   settings(finatraSettings: _*)
 
 lazy val androidApp = (project in file("modules/androidApp")).dependsOn(utilities).aggregate(utilities).
-  settings(finatraSettings: _*)
+  settings(pactConsumerSettings: _*)
 
 lazy val iosApp = (project in file("modules/iosApp")).dependsOn(utilities).aggregate(utilities).
-  settings(finatraSettings: _*)
+  settings(pactConsumerSettings: _*)
 
 lazy val provider = (project in file("modules/provider")).dependsOn(utilities).aggregate(utilities).
   settings(finatraSettings: _*)

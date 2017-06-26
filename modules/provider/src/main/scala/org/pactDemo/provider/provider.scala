@@ -1,10 +1,7 @@
-package org.pactDemo
+package org.pactDemo.provider
 
-import com.twitter.finagle.http.{Request, Response}
-import com.twitter.finatra.http.{Controller, HttpServer}
-import com.twitter.finatra.http.filters.{CommonFilters, LoggingMDCFilter, TraceIdMDCFilter}
-import com.twitter.finatra.http.routing.HttpRouter
-import com.twitter.finatra.request.{QueryParam, RouteParam}
+import com.twitter.finatra.http.Controller
+import com.twitter.finatra.request.RouteParam
 import org.pactDemo.utilities.FinatraServer
 
 case class ProviderRequest(@RouteParam id: Int)
